@@ -12,13 +12,6 @@ func Security(app *fiber.App) {
 	app.Use(cors.New(cors.Config{
 		// Permite todos los orígenes
 		AllowOrigins: "*",
-		// *****************************************************************************
-		// De cuerdo con las DISPOSICIONES de carácter general relativas a las API's   *
-		// informáticas estandarizadas a que hace referencia la Ley para Regular las   *
-		// ITF's, ANEXO 1, numeral 2.1, punto II,                                      *
-		// insizo "a":                                                                 *
-		// SÓLO SE PODRÁ TRABAJAR CON LOS VERVOS GET, POST, PUT y DELETE               *
-		// *****************************************************************************
 		// Sólo se deben agregar los vervos que se usan en el API
 		AllowMethods: "POST",
 		// Optional. Default value "".

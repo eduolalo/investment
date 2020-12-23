@@ -29,3 +29,6 @@ $ go run main.go
 
 [Aquí te dejo una colección de Postman](https://www.getpostman.com/collections/6401765c93da452dbddd) para que pruebes el proyecto, sólo le cambias el baseURL al tuyo :P
 
+## Dónde está la interfáz que se debe satisfacer?
+
+*./structs/Assigner.Assign*
