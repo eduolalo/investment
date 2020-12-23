@@ -1,20 +1,45 @@
 package main
 
 import (
-	"invest/structs"
-	"log"
+	"invest/api"
+	"invest/config"
+	"os"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
 
-	var creditAsigner structs.Assigner
-	b3, b5, b7, err := creditAsigner.Assign(6701)
+	app := fiber.New(fiber.Config{
+		CaseSensitive:    true,
+		ServerHeader:     "Edu",
+		DisableKeepalive: true,
+	})
 
-	if err != nil {
+	// Configuraciones
+	config.Accepts(app)
+	config.Security(app)
 
-		log.Println(err.Error())
+	appGroup := app.Group("/api")
+	api.Router(appGroup)
+	// Manejador de Páginas no encontradas
+	config.Page404(app)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+
+		port = "3000"
 	}
+	app.Listen(":" + port)
 
-	log.Println(b3, b5, b7)
+	// var creditAsigner structs.Assigner
+	// b3, b5, b7, err := creditAsigner.Assign(6701)
+
+	// if err != nil {
+
+	// 	log.Println(err.Error())
+	// }
+
+	// log.Println(b3, b5, b7)
 
 }
