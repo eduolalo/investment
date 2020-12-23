@@ -1,6 +1,7 @@
 package investing
 
 import (
+	"invest/redis"
 	"invest/structs"
 
 	"github.com/gofiber/fiber/v2"
@@ -23,9 +24,12 @@ func Assign(c *fiber.Ctx) error {
 	b3, b5, b7, err := asigner.Assign(body.Investment)
 	if err != nil {
 
+		go redis.Store(false, body.String())
 		res.BadRequest(err.Error())
 		return c.Status(fiber.StatusBadRequest).JSON(res)
 	}
+
+	go redis.Store(true, body.String())
 	res.Ok("Ok")
 	res.B3 = b3
 	res.B5 = b5

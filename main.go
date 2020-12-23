@@ -3,9 +3,11 @@ package main
 import (
 	"invest/api"
 	"invest/config"
+
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/kalmecak/go-redis-connector"
 )
 
 func main() {
@@ -24,6 +26,9 @@ func main() {
 	api.Router(appGroup)
 	// Manejador de Páginas no encontradas
 	config.Page404(app)
+
+	// DB Connect
+	redis.Connect()
 
 	port := os.Getenv("PORT")
 	if port == "" {

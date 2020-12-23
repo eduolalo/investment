@@ -1,6 +1,7 @@
 package investing
 
 import (
+	"invest/redis"
 	"invest/structs"
 
 	"github.com/gofiber/fiber/v2"
@@ -14,6 +15,7 @@ func ValidateBody(c *fiber.Ctx) error {
 	body.Unmarshal(c.Body())
 	if body.Investment == 0 {
 
+		go redis.Store(false, "0")
 		var res structs.Response
 		res.BadRequest("La inversión debe ser mayor a $300")
 		return c.Status(fiber.StatusBadRequest).JSON(res)

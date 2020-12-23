@@ -19,3 +19,19 @@ func (s *InvestBody) Unmarshal(body []byte) {
 		log.Println("--- structs.InvestBody.Unmarshal ---")
 	}
 }
+
+// String regresa el string del monto la inversión
+func (s InvestBody) String() string {
+	buf := [11]byte{}
+	pos := len(buf)
+	i := int64(s.Investment)
+
+	for {
+		pos--
+		buf[pos], i = '0'+byte(i%10), i/10
+		if i == 0 {
+
+			return string(buf[pos:])
+		}
+	}
+}
