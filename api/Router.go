@@ -2,6 +2,7 @@ package api
 
 import (
 	"invest/api/investing"
+	"invest/api/statistics"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -13,4 +14,5 @@ import (
 func Router(app fiber.Router) {
 
 	app.Post("/credit-assignment", investing.ValidateBody, investing.Assign)
+	app.Post("/statistics", statistics.Get)
 }

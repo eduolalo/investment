@@ -21,6 +21,7 @@ func main() {
 	// Configuraciones
 	config.Accepts(app)
 	config.Security(app)
+	config.Logger(app)
 
 	appGroup := app.Group("/api")
 	api.Router(appGroup)
@@ -36,15 +37,5 @@ func main() {
 		port = "3000"
 	}
 	app.Listen(":" + port)
-
-	// var creditAsigner structs.Assigner
-	// b3, b5, b7, err := creditAsigner.Assign(6701)
-
-	// if err != nil {
-
-	// 	log.Println(err.Error())
-	// }
-
-	// log.Println(b3, b5, b7)
 
 }
